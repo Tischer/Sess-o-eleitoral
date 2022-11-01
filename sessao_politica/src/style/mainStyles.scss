@@ -1,0 +1,57 @@
+@import "./colorsModules.scss";
+
+// Base styles
+* {
+    position: relative;
+    margin: 0%;
+    border: 0ch;
+    padding: 0%;
+    text-decoration: none;
+    list-style: none;
+    color: $font-color;
+    &::placeholder {
+        color: $font-color;
+    }
+    &:focus {
+        outline: none;
+        background-color: transparent;
+    }
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    background-color: $background-color;
+}
+
+section {
+    padding: 2rem 4rem;
+}
+
+// Header
+header {
+    height: 4rem;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $marker-color;
+    * {
+        color: $background-color;
+    }
+    .logo {
+        .title {
+            font-size: 2rem;
+        }
+    }
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .menuItem {
+            margin: 0 1rem;
+        }
+    }
+}

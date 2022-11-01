@@ -1,0 +1,48 @@
+@import "../../style/colorsModules.scss";
+
+.propostasPage {
+    .title {
+        font-size: 2rem;
+    }
+    .propostas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .proposta {
+            height: 16rem;
+            width: 30rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 1rem;
+            border: solid 0.2rem $marker-color;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            cursor: pointer;
+            .titulo {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+            .votos {
+                width: 18rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                .voto {
+                    font-size: 1.5rem;
+                    .positivos {
+                        color: #27ae60;
+                    }
+                    .negativos {
+                        color: #c0392b;
+                    }
+                }
+            }
+            .autor {
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-align: end;
+            }
+        }
+    }
+}

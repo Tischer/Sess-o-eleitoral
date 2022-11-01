@@ -1,0 +1,37 @@
+@import "../../style/colorsModules.scss";
+
+.cadastroPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .title {
+        margin-bottom: 2rem;
+        p {
+            font-size: 1.5rem;
+        }
+    }
+    .cadastro {
+        height: 20rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        input,
+        button {
+            background-color: transparent;
+        }
+        .formInput {
+            width: 15rem;
+            padding: 0.5rem;
+            border-bottom: solid 2px $marker-color;
+        }
+        .formButton {
+            width: fit-content;
+            padding: 1rem;
+            color: $background-color;
+            background-color: $marker-color;
+            cursor: pointer;
+        }
+    }
+}
