@@ -1,47 +1,66 @@
 @import "../../style/colorsModules.scss";
 
 .propostasPage {
-    .title {
-        font-size: 2rem;
-    }
-    .propostas {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        .proposta {
-            height: 16rem;
-            width: 30rem;
+    display: flex;
+    justify-content: center;
+    .propostasInterface {
+        width: 50rem;
+        border: solid 1px $marker-color;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        .menu {
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            margin: 1rem;
-            border: solid 0.2rem $marker-color;
-            border-radius: 0.75rem;
-            padding: 2rem;
-            cursor: pointer;
-            .titulo {
-                font-size: 1.4rem;
-                font-weight: 600;
+            align-items: center;
+            margin-bottom: 1rem;
+            .userName {
+                padding: 0 1rem;
             }
-            .votos {
-                width: 18rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                .voto {
+            a {
+                border-radius: 0 0.75rem 0 0;
+                padding: 1rem;
+                background-color: $marker-color;
+                color: $background-color;
+                cursor: pointer;
+            }
+        }
+        .minhasPropostas {
+            border-top: solid 1px $marker-color;
+            .proposta {
+                margin: 4rem 0;
+                padding: 1rem;
+                cursor: pointer;
+                &:hover > .titulo::before {
+                    width: 3rem;
+                    transition-duration: 0.5s;
+                }
+                .titulo {
+                    padding-bottom: 0.25rem;
+                    margin-bottom: 0.5rem;
                     font-size: 1.5rem;
-                    .positivos {
-                        color: #27ae60;
-                    }
-                    .negativos {
-                        color: #c0392b;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        height: 2px;
+                        width: 0rem;
+                        background-color: $marker-color;
                     }
                 }
-            }
-            .autor {
-                font-size: 0.9rem;
-                font-weight: 600;
-                text-align: end;
+                .votos {
+                    display: flex;
+                    width: 25rem;
+                    justify-content: space-between;
+                    margin: 1rem 0;
+                    font-size: 1.2rem;
+                    .positivo {
+                        color: $positive-color;
+                    }
+                    .negativo {
+                        color: $negative-color;
+                    }
+                }
             }
         }
     }

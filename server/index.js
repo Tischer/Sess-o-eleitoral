@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyparser = require("body-parser");
 const mysql = require('mysql');
 const md5 = require('md5');
-const { response } = require('express');
 
 // Config .env 
 require('dotenv').config();
@@ -21,7 +20,7 @@ try {
 }
 
 root.use(cors());
-root.use(express.json())
+root.use(express.json());
 root.use(bodyparser.urlencoded({ extended: true }));
 
 // Data base setup
@@ -66,7 +65,18 @@ root.post('/login', (req, res) => {
 });
 
 root.post('/propostas', (req, res) => {
-    const id = req.body.idUser;
+    const query01 = 'select sessao.*, politico.usuario from sessao inner join politico on sessao.idPolitico = politico.idPolitico;'
 
-    const query = 'select * from sessoes'
+    db.query(query01, (err, result) => {
+        res.send(result);
+    });
 });
+
+root.post('/userInfo', (req, res) => {
+    const idUser = req.body.idUser;
+    const query = 'select sessao.*, politico.usuario from sessao inner join politico on sessao.idPolitico = politico.idPolitico where sessao.idPolitico = (?);';
+
+    db.query(query, [idUser], (err, result) => {
+        res.send(result);
+    })
+})

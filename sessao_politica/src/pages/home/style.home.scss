@@ -1,7 +1,8 @@
 @import "../../style/colorsModules.scss";
 
 .homePage {
-    .emAndamento {
+    .tipoSessao {
+        margin-bottom: 10rem;
         padding: 0 2rem;
         &::before {
             content: "";
@@ -11,11 +12,46 @@
             top: 0;
             left: 0;
             border-radius: 1rem;
-            background-color: $marker-color;
         }
         .title {
             p {
-                font-size: 1.5rem;
+                font-size: 2rem;
+            }
+        }
+    }
+    .emAndamento {
+        &::before {
+            background-color: $marker-color;
+        }
+    }
+    .finalizadas {
+        &::before {
+            background-color: $font-color;
+        }
+    }
+    .proposta {
+        width: 40rem;
+        margin: 2rem 0rem;
+        border: solid 1px $marker-color;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        .titulo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .resultado {
+            .aprovada {
+                color: $positive-color;
+                font-size: 600;
+            }
+            .reprovada {
+                color: $negative-color;
+                font-size: 600;
+            }
+            .empate {
+                color: $neutral-color;
+                font-size: 600;
             }
         }
     }

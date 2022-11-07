@@ -1,67 +1,47 @@
 //Tools
-import { Routes, Navigate, Route } from 'react-router-dom';
+import { Routes, Navigate, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 //Styles
 import './style.propostas.scss';
 
-function Proposta(idUser) {
+function Proposta({ idUser }) {
+
+    let [user, setUser] = useState([]);
+    let [sessoes, setSessoes] = useState([]);
+
+
+    useEffect(() => {
+        try {
+            axios.post('http://localhost:3001/userInfo', {
+                idUser: idUser
+            }).then((response) => {
+                setUser(response.data[0]);
+                setSessoes(response.data);
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }, [])
 
     return (
         <section className="propostasPage">
             <Routes>
                 {idUser ? null : <Route path='/' element={<Navigate to="/" />} />}
             </Routes>
-            <p className="title">Suas propostas em votação</p>
-            <div className="propostas propostasAtivas">
-                <div className="proposta">
-                    <p className="titulo">Título do projeto</p>
-                    <p className="resumo">Resumo da proposta: Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sapiente ullam quia dolor suscipit ad architecto amet ratione esse nobis. Eum tempore beatae laboriosam deserunt labore! Fuga magni laboriosam quaerat.</p>
-                    <p>Votos:</p>
-                    <div className="votos">
-                        <p className="voto">A favor: <span className='positivos'>23</span></p>
-                        <p className="voto">Contra: <span className='negativos'>12</span></p>
-                    </div>
-                    <p className="autor">Autor: nome do politico</p>
+            <div className="propostasInterface">
+                <div className="menu">
+                    <p className="userName">{user.usuario}</p>
+                    <Link to={'/criar-proposta'}>Criar proposta</Link>
                 </div>
-            </div>
-            <p className="title">Suas propostas aprovadas</p>
-            <div className="propostas propostasAprovadas">
-                <div className="proposta">
-                    <p className="titulo">Título do projeto</p>
-                    <p className="resumo">Resumo da proposta: Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sapiente ullam quia dolor suscipit ad architecto amet ratione esse nobis. Eum tempore beatae laboriosam deserunt labore! Fuga magni laboriosam quaerat.</p>
-                    <p>Votos:</p>
-                    <div className="votos">
-                        <p className="voto">A favor: <span className='positivos'>23</span></p>
-                        <p className="voto">Contra: <span className='negativos'>12</span></p>
-                    </div>
-                    <p className="autor">Autor: nome do politico</p>
-                </div>
-            </div>
-            <p className="title">Suas propostas Reprovadas</p>
-            <div className="propostas propostasReprovadas">
-                <div className="proposta">
-                    <p className="titulo">Título do projeto</p>
-                    <p className="resumo">Resumo da proposta: Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sapiente ullam quia dolor suscipit ad architecto amet ratione esse nobis. Eum tempore beatae laboriosam deserunt labore! Fuga magni laboriosam quaerat.</p>
-                    <p>Votos:</p>
-                    <div className="votos">
-                        <p className="voto">A favor: <span className='positivos'>23</span></p>
-                        <p className="voto">Contra: <span className='negativos'>12</span></p>
-                    </div>
-                    <p className="autor">Autor: nome do politico</p>
-                </div>
-            </div>
-            <p className="title">Todas suas propostas</p>
-            <div className="propostas todasPropostas">
-                <div className="proposta">
-                    <p className="titulo">Título do projeto</p>
-                    <p className="resumo">Resumo da proposta: Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sapiente ullam quia dolor suscipit ad architecto amet ratione esse nobis. Eum tempore beatae laboriosam deserunt labore! Fuga magni laboriosam quaerat.</p>
-                    <p>Votos:</p>
-                    <div className="votos">
-                        <p className="voto">A favor: <span className='positivos'>23</span></p>
-                        <p className="voto">Contra: <span className='negativos'>12</span></p>
-                    </div>
-                    <p className="autor">Autor: nome do politico</p>
+                <div className="minhasPropostas">
+                    {sessoes.map((sessao, index) => <div className="proposta" key={index}>
+                        <p className="titulo">{sessao.nome}</p>
+                        <p className="descricao">{sessao.descricao}</p>
+                        <p className="votos">Votos: <span className="positivo">{sessao.qtdVotosPos} A favor </span> <span className="negativo">{sessao.qtdVotosNeg} Contra</span></p>
+                        <p className="autor">{sessao.usuario}</p>
+                    </div>)}
                 </div>
             </div>
         </section>

@@ -9,6 +9,7 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Cadastro from './pages/cadastro/Cadastro';
 import Propostas from './pages/propostas/Propostas';
+import CriarProposta from './pages/propostas/criarProposta/CriarProposta';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/cadastro' element={<Cadastro idUser={idUser} />}></Route>
           <Route path='/minhas-propostas' element={<Propostas idUser={idUser} />}></Route>
           <Route path='/cadastro' element={<Cadastro idUser={idUser} />}></Route>
+          <Route path={'/criar-proposta'} element={<CriarProposta idUser={idUser} />}></Route>
         </Routes>
       </Router>
     </div>
